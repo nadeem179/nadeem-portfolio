@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nadeem Saifi — Cases</title>
+<meta property="og:title" content="Nadeem Saifi — Cases" />
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<style>
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-RegularItalic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-ExtraBold.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Gilroy"; src: url("fonts/Gilroy-Black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+
+  :root {
+    --bg: #0d0a14;
+    --bg-soft: #15111d;
+    --bg-elev: #1c1726;
+    --ink: #f3efe7;
+    --ink-soft: #d8d3c8;
+    --muted: #7d7889;
+    --line: rgba(243,239,231,0.08);
+    --line-strong: rgba(243,239,231,0.18);
+    --yellow: #ffe000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Gilroy", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .nav-logo { display: block; width: 213px; }
+  .nav-logo img { width: 100%; height: auto; display: block; }
+
+  .hamburger {
+    position: relative;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--yellow);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .hamburger:hover { transform: rotate(90deg); }
+  .hamburger::before, .hamburger::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    transition: transform 0.3s ease;
+  }
+  .hamburger::before { width: 24px; height: 2px; }
+  .hamburger::after { width: 2px; height: 24px; }
+  .hamburger.open { transform: rotate(45deg); }
+
+  .menu {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    z-index: 90;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .menu.open { opacity: 1; pointer-events: auto; }
+  .menu-list { list-style: none; text-align: center; }
+  .menu-list a {
+    display: block;
+    color: var(--ink);
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+  }
+  .menu-list a:hover { color: var(--yellow); }
+
+  .page {
+    padding: 150px 0 100px;
+  }
+  .page h1 {
+    font-size: clamp(54px, 7vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .lede {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .section-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin: 80px 0 30px;
+    color: var(--yellow);
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .case-card {
+    position: relative;
+    border-radius: 20px;
+    height: 360px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+  }
+  .case-card:hover { transform: translateY(-6px); border-color: var(--line-strong); }
+  .case-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(13,10,20,0.05) 0%, rgba(13,10,20,0.86) 72%);
+  }
+  .meta {
+    position: absolute;
+    left: 22px; right: 22px; bottom: 22px;
+    z-index: 2;
+  }
+  .tag {
+    display: inline-flex;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+  }
+  .meta h3 { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 6px; }
+  .meta p { color: var(--ink-soft); font-size: 15px; line-height: 1.45; }
+
+  .copyright {
+    margin-top: 70px;
+    font-size: 13px;
+    color: rgba(243,239,231,0.55);
+  }
+
+  @media (max-width: 991px) {
+    .cases-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .nav { padding: 20px; }
+    .nav-logo { width: 98px; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .case-card { height: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo" aria-label="Nadeem Saifi home">
+    <img src="assets/logo.svg" alt="Nadeem Saifi" />
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"></button>
+</nav>
+
+<div class="menu" id="menu">
+  <ul class="menu-list">
+    <li><a href="cases.html">Cases</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="assets/Nadeem_Saifi_Resume_ATS.pdf" download>Download CV</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<main class="page">
+  <div class="container">
+    <h1>Cases</h1>
+    <p class="lede">Selected work across SaaS, Fintech, EdTech, and E-commerce — focused on reducing friction, improving clarity, and building scalable design systems.</p>
+
+    <h2 class="section-title">Featured</h2>
+    <div class="cases-grid">
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/lawnstarter/cover.png')">
+        <div class="meta">
+          <div class="tag">SaaS · Medical</div>
+          <h3>Laboredge</h3>
+          <p>Medical license workflow · ~40% fewer steps</p>
+        </div>
+      </a>
+
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/mypantry/cover.png')">
+        <div class="meta">
+          <div class="tag">Fintech · SaaS</div>
+          <h3>SBI Cards</h3>
+          <p>Onboarding redesign · 9 steps → 5</p>
+        </div>
+      </a>
+
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/reeler/cover.png')">
+        <div class="meta">
+          <div class="tag">SaaS · Dashboard</div>
+          <h3>Nexus VMS</h3>
+          <p>Dashboards for 500+ daily users · ~35% task completion lift</p>
+        </div>
+      </a>
+
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/piccos/cover.png')">
+        <div class="meta">
+          <div class="tag">SaaS · AI Tools</div>
+          <h3>Shakespeare.ai</h3>
+          <p>0→1 UI launch · ~25% engagement lift</p>
+        </div>
+      </a>
+
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/doorcast/cover.png')">
+        <div class="meta">
+          <div class="tag">EdTech · Platform</div>
+          <h3>BYJU'S</h3>
+          <p>Platform redesign for 5M+ learners</p>
+        </div>
+      </a>
+
+      <a class="case-card" href="index.html#cases" style="background-image:url('assets/cases/verifycar/cover.png')">
+        <div class="meta">
+          <div class="tag">SaaS · Multi-product</div>
+          <h3>ProProfs</h3>
+          <p>Owned UX across 4 products · ~28% faster CRM tasks</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="copyright">© Nadeem Saifi — Portfolio</div>
+  </div>
+</main>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+</script>
+</body>
+</html>
+
