@@ -170,7 +170,9 @@
     max-width: 880px;
     margin: 56px auto 0;
     color: var(--ink);
-  }
+
+    padding: 0 10px;
+}
 
   /* ── BRAND STRIP ──────────────────────────────── */
   .brand-strip {
@@ -210,11 +212,11 @@
   .section-title {
     font-size: clamp(72px, 10vw, 144px);
     font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 0.95;
+    letter-spacing: -0.08em;
+    line-height: 0.88;
     color: var(--yellow);
     margin-bottom: 56px;
-  }
+}
 
   .cases-grid {
     display: grid;
@@ -230,6 +232,9 @@
     position: relative;
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
+  .case-card {
+    aspect-ratio: 0.95 / 1;
+}
   .case-card:hover { transform: translateY(-6px); }
   /* Dark overlay on hover for better text legibility over cover images */
   .case-card::after {
@@ -516,11 +521,14 @@
     padding: 80px 64px;
     position: relative;
     overflow: hidden;
+
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 64px;
     align-items: center;
-  }
+
+    width: 100%;
+}
   .trace-promo .promo-card::before {
     content: ""; position: absolute; inset: 0;
     background:
@@ -540,15 +548,25 @@
     border-radius: 999px; margin-bottom: 28px;
   }
   .trace-promo h3 {
-    font-size: clamp(40px, 5vw, 72px); font-weight: 800;
-    letter-spacing: -0.04em; line-height: 1; color: var(--ink);
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    color: var(--ink);
     margin-bottom: 20px;
-  }
+
+    max-width: 620px;
+}
   .trace-promo h3 em { font-style: normal; color: var(--yellow); }
   .trace-promo p {
-    font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55;
-    color: var(--ink-soft); margin-bottom: 32px; max-width: 540px;
-  }
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.7;
+    color: var(--ink-soft);
+
+    margin-bottom: 32px;
+
+    max-width: 540px;
+}
   .trace-promo .cta {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 16px 28px;
@@ -594,9 +612,69 @@
       gap: 40px;
     }
   }
-  @media (max-width: 640px) {
-    .trace-promo .visual { grid-template-columns: repeat(4, 1fr); }
-  }
+  @media (max-width: 768px) {
+
+    .trace-promo .promo-card {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+        gap: 40px;
+        border-radius: 28px;
+    }
+
+    .trace-promo h3 {
+        font-size: 52px;
+        line-height: 0.95;
+    }
+
+    .trace-promo p {
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .trace-promo .visual {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .trace-promo .visual .dot-card {
+        min-height: 140px;
+        border-radius: 20px;
+    }
+
+    .trace-promo .visual .dot-card .num {
+        font-size: 42px;
+    }
+
+    .trace-promo .visual .dot-card .lbl {
+        font-size: 11px;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    .trace-promo .cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+@media (max-width: 480px) {
+
+    .trace-promo h3 {
+        font-size: 41px;
+    }
+
+    .trace-promo p {
+        font-size: 16px;
+    }
+
+    .trace-promo .promo-card {
+        padding: 32px 20px;
+    }
+
+    .trace-promo .visual .dot-card {
+        min-height: 120px;
+    }
+
+}
 
   /* ── INTERVIEW CTA BUTTON ──────────────────────── */
   .interview-cta {
@@ -943,9 +1021,11 @@
   @media (max-width: 640px) {
     .container { padding: 0 20px; }
     .nav { padding: 20px; }
-    .nav-logo { width: 98px; }
+    .nav-logo { width: 120px; }
     .hero { padding: 110px 0 40px; }
-    .hero-stage { height: 380px; }
+    .hero-stage {
+    height: 300px;
+}
     .section { padding: 60px 0 80px; }
     .lets-meet { padding: 80px 0 24px; }
     .cases-grid { grid-template-columns: 1fr; }    .copyright { margin-top: 60px; }
